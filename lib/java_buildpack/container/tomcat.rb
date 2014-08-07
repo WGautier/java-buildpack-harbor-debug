@@ -38,7 +38,9 @@ module JavaBuildpack
         [
           @droplet.java_home.as_env_var,
           @droplet.java_opts.as_env_var,
+          'JPDA_ADDRESS=4000',
           "$PWD/#{(@droplet.sandbox + 'bin/catalina.sh').relative_path_from(@droplet.root)}",
+          'jpda',
           'run'
         ].flatten.compact.join(' ')
       end
